@@ -1,0 +1,118 @@
+{
+  "nodes": [
+    {
+      "id": 1,
+      "label": "NAS Device",
+      "type": "hardware",
+      "description": "Network Attached Storage device that provides file-level access to data",
+      "properties": {
+        "category": "Hardware",
+        "protocols": ["SMB", "NFS", "FTP"],
+        "capacity": "Variable"
+      }
+    },
+    {
+      "id": 2,
+      "label": "RAID Configuration",
+      "type": "concept",
+      "description": "Redundant Array of Independent Disks configuration for data protection",
+      "properties": {
+        "category": "Storage Concept",
+        "levels": ["RAID 0", "RAID 1", "RAID 5", "RAID 6", "RAID 10"],
+        "purpose": "Data Protection and Performance"
+      }
+    },
+    {
+      "id": 3,
+      "label": "Network Protocol",
+      "type": "protocol",
+      "description": "Communication protocols used for file sharing",
+      "properties": {
+        "category": "Network",
+        "examples": ["SMB/CIFS", "NFS", "AFP", "FTP", "SFTP"],
+        "layer": "Application Layer"
+      }
+    },
+    {
+      "id": 4,
+      "label": "Storage Pool",
+      "type": "concept",
+      "description": "Logical grouping of physical storage devices",
+      "properties": {
+        "category": "Storage Management",
+        "benefits": ["Flexibility", "Scalability", "Utilization"],
+        "components": ["Physical Disks", "Virtual Disks"]
+      }
+    },
+    {
+      "id": 5,
+      "label": "Backup Strategy",
+      "type": "process",
+      "description": "Systematic approach to data backup and recovery",
+      "properties": {
+        "category": "Data Protection",
+        "types": ["Full", "Incremental", "Differential"],
+        "schedule": "Regular intervals"
+      }
+    },
+    {
+      "id": 6,
+      "label": "File System",
+      "type": "concept",
+      "description": "Method for organizing and storing files on storage devices",
+      "properties": {
+        "category": "Storage",
+        "examples": ["NTFS", "ext4", "ZFS", "Btrfs"],
+        "features": ["Metadata", "Permissions", "Journaling"]
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": 1,
+      "from": 1,
+      "to": 2,
+      "label": "uses",
+      "type": "relationship",
+      "description": "NAS devices implement RAID configurations"
+    },
+    {
+      "id": 2,
+      "from": 1,
+      "to": 3,
+      "label": "communicates via",
+      "type": "relationship",
+      "description": "NAS devices use network protocols for communication"
+    },
+    {
+      "id": 3,
+      "from": 2,
+      "to": 4,
+      "label": "creates",
+      "type": "relationship",
+      "description": "RAID configurations form storage pools"
+    },
+    {
+      "id": 4,
+      "from": 1,
+      "to": 5,
+      "label": "implements",
+      "type": "relationship",
+      "description": "NAS devices implement backup strategies"
+    },
+    {
+      "id": 5,
+      "from": 4,
+      "to": 6,
+      "label": "formatted with",
+      "type": "relationship",
+      "description": "Storage pools use specific file systems"
+    }
+  ],
+  "metadata": {
+    "version": "1.0",
+    "created": "2024-01-01",
+    "description": "Sample NAS knowledge graph data for demonstration",
+    "author": "NAS Knowledge Graph Demo"
+  }
+}

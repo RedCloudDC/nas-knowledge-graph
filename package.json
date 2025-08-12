@@ -1,0 +1,50 @@
+{
+  "name": "nas-knowledge-graph-demo",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Interactive visualization of NAS (Network Attached Storage) knowledge relationships",
+  "main": "src/main.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "lint": "eslint src/**/*.js",
+    "lint:fix": "eslint src/**/*.js --fix",
+    "format": "prettier --write \"src/**/*.{js,json,css,html}\"",
+    "format:check": "prettier --check \"src/**/*.{js,json,css,html}\"",
+    "build": "npm run lint && npm run test",
+    "dev": "python3 -m http.server 8080",
+    "prepare": "husky"
+  },
+  "keywords": [
+    "nas",
+    "knowledge-graph",
+    "visualization",
+    "storage",
+    "demo"
+  ],
+  "author": "NAS Knowledge Graph Demo",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/USERNAME/nas-knowledge-graph-demo.git"
+  },
+  "homepage": "https://USERNAME.github.io/nas-knowledge-graph-demo",
+  "lint-staged": {
+    "src/**/*.{js,json,css,html}": [
+      "prettier --write",
+      "eslint --fix"
+    ]
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.33.0",
+    "eslint": "^9.33.0",
+    "husky": "^9.1.7",
+    "jest": "^30.0.5",
+    "jest-environment-jsdom": "^30.0.5",
+    "lint-staged": "^15.5.2",
+    "prettier": "^3.6.2"
+  }
+}

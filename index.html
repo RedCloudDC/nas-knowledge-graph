@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NAS Knowledge Graph Demo</title>
+    <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+    <div id="app">
+        <header>
+            <h1>NAS Knowledge Graph Demo</h1>
+            <p>Interactive visualization of NAS (Network Attached Storage) knowledge relationships</p>
+        </header>
+        
+        <main>
+            <div id="graph-container">
+                <!-- Knowledge graph visualization will be rendered here -->
+                <div class="loading">Loading knowledge graph...</div>
+            </div>
+            
+            <div id="controls">
+                <button id="reset-view">Reset View</button>
+                <button id="expand-all">Expand All</button>
+                <button id="collapse-all">Collapse All</button>
+            </div>
+            
+            <div id="info-panel">
+                <h3>Node Information</h3>
+                <div id="node-details">
+                    Select a node to view details
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="src/main.js"></script>
+</body>
+</html>
