@@ -15,6 +15,9 @@ export default defineConfig({
     // Output directory for GitHub Pages
     outDir: 'docs',
     
+    // Copy public assets and data files
+    copyPublicDir: true,
+    
     // Generate source maps for debugging
     sourcemap: true,
     

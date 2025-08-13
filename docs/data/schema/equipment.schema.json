@@ -1,0 +1,155 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nas-knowledge-graph.example.com/schemas/equipment",
+  "title": "Equipment Node Schema",
+  "description": "Schema for NAS equipment nodes including surveillance equipment, navigation aids, weather systems, and communication systems",
+  "type": "object",
+  "required": ["id", "name", "type", "category", "operationalStatus", "location"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the equipment",
+      "pattern": "^EQ[0-9]{6}$"
+    },
+    "name": {
+      "type": "string",
+      "description": "Human-readable name of the equipment",
+      "minLength": 1,
+      "maxLength": 200
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "radar_short_range",
+        "radar_long_range",
+        "radom",
+        "vor",
+        "glide_slope",
+        "localizer",
+        "marker_beacon",
+        "asos",
+        "awos",
+        "adas",
+        "tvs",
+        "vscs",
+        "tdm_ethernet"
+      ],
+      "description": "Specific equipment type"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "surveillance",
+        "navigation",
+        "weather",
+        "communication"
+      ],
+      "description": "High-level equipment category"
+    },
+    "model": {
+      "type": "string",
+      "description": "Equipment model number or designation",
+      "maxLength": 100
+    },
+    "manufacturer": {
+      "type": "string",
+      "description": "Equipment manufacturer",
+      "maxLength": 100
+    },
+    "installationDate": {
+      "type": "string",
+      "format": "date",
+      "description": "Date when equipment was installed (ISO 8601 format)"
+    },
+    "operationalStatus": {
+      "type": "string",
+      "enum": [
+        "operational",
+        "maintenance",
+        "offline",
+        "decommissioned"
+      ],
+      "description": "Current operational status"
+    },
+    "criticalityLevel": {
+      "type": "string",
+      "enum": [
+        "critical",
+        "high",
+        "medium",
+        "low"
+      ],
+      "description": "Operational criticality level for safety and operations"
+    },
+    "location": {
+      "type": "string",
+      "description": "Reference to location ID where equipment is installed",
+      "pattern": "^LOC[0-9]{6}$"
+    },
+    "lastServiceDate": {
+      "type": "string",
+      "format": "date",
+      "description": "Date of last maintenance service (ISO 8601 format)"
+    },
+    "nextServiceDate": {
+      "type": "string",
+      "format": "date",
+      "description": "Scheduled next maintenance service date (ISO 8601 format)"
+    },
+    "maintenanceSchedule": {
+      "type": "string",
+      "enum": [
+        "weekly",
+        "monthly",
+        "quarterly",
+        "semi_annual",
+        "annual",
+        "as_needed"
+      ],
+      "description": "Regular maintenance schedule frequency"
+    },
+    "specifications": {
+      "type": "object",
+      "description": "Technical specifications specific to equipment type",
+      "properties": {
+        "frequency": {
+          "type": "string",
+          "description": "Operating frequency (for radio equipment)"
+        },
+        "range": {
+          "type": "string",
+          "description": "Operational range (for radar/navigation equipment)"
+        },
+        "power": {
+          "type": "string",
+          "description": "Power rating or consumption"
+        },
+        "accuracy": {
+          "type": "string",
+          "description": "Measurement accuracy (for precision equipment)"
+        }
+      },
+      "additionalProperties": true
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Record creation timestamp"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Record last update timestamp"
+        },
+        "version": {
+          "type": "string",
+          "description": "Schema version"
+        }
+      }
+    }
+  },
+  "additionalProperties": false
+}
