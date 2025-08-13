@@ -28,6 +28,7 @@
     "build": "npm run lint && npm run test && npm run docs:api && vite build",
     "build:prod": "NODE_ENV=production npm run docs:api && vite build",
     "build:deploy": "npm run docs:api && vite build",
+    "verify:deployment": "node scripts/verify-deployment.js",
     "build:qa": "npm run qa && npm run docs:api && npm run build",
     "preview": "vite preview",
     "analyze": "npm run build && npx vite-bundle-analyzer dist",
