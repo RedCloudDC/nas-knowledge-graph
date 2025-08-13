@@ -1,0 +1,369 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nas-knowledge-graph.example.com/schemas/relationship",
+  "title": "Relationship Record Schema",
+  "description": "Schema for relationship records that connect nodes in the knowledge graph",
+  "type": "object",
+  "required": ["sourceId", "targetId", "type"],
+  "properties": {
+    "sourceId": {
+      "type": "string",
+      "description": "ID of the source node in the relationship",
+      "pattern": "^(EQ|LOC|EVT|PER|RPT)[0-9]{6}$"
+    },
+    "targetId": {
+      "type": "string",
+      "description": "ID of the target node in the relationship",
+      "pattern": "^(EQ|LOC|EVT|PER|RPT)[0-9]{6}$"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "LOCATED_AT",
+        "ASSIGNED_TO",
+        "EXPERIENCED_OUTAGE",
+        "GENERATED_REPORT",
+        "CONTAINS_LESSONS",
+        "DEPENDS_ON",
+        "MAINTAINS",
+        "SUPERVISES",
+        "WORKS_AT",
+        "AUTHORED",
+        "REVIEWED",
+        "APPROVED",
+        "RESOLVED_BY",
+        "AFFECTED_BY",
+        "ESCALATED_TO",
+        "RELATED_TO",
+        "PART_OF",
+        "REPLACED_BY",
+        "CONFIGURED_WITH",
+        "COMMUNICATES_WITH",
+        "REFERENCES",
+        "FOLLOWS_UP_ON"
+      ],
+      "description": "Type of relationship between nodes"
+    },
+    "direction": {
+      "type": "string",
+      "enum": [
+        "directed",
+        "undirected"
+      ],
+      "default": "directed",
+      "description": "Whether the relationship is directional or bidirectional"
+    },
+    "weight": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1,
+      "description": "Relationship strength or importance (0-1 scale)"
+    },
+    "properties": {
+      "type": "object",
+      "description": "Additional properties specific to the relationship type",
+      "properties": {
+        "startDate": {
+          "type": "string",
+          "format": "date-time",
+          "description": "When the relationship began"
+        },
+        "endDate": {
+          "type": "string",
+          "format": "date-time",
+          "description": "When the relationship ended (if applicable)"
+        },
+        "duration": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Duration of relationship in minutes (for time-bound relationships)"
+        },
+        "frequency": {
+          "type": "string",
+          "enum": [
+            "one-time",
+            "daily",
+            "weekly",
+            "monthly",
+            "quarterly",
+            "annually",
+            "as-needed",
+            "continuous"
+          ],
+          "description": "How often this relationship occurs"
+        },
+        "strength": {
+          "type": "string",
+          "enum": [
+            "weak",
+            "moderate",
+            "strong",
+            "critical"
+          ],
+          "description": "Qualitative strength of the relationship"
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Confidence level in this relationship (0-1 scale)"
+        },
+        "cost": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Cost associated with this relationship (if applicable)"
+        },
+        "impact": {
+          "type": "string",
+          "enum": [
+            "none",
+            "low",
+            "medium",
+            "high",
+            "critical"
+          ],
+          "description": "Impact level of this relationship"
+        }
+      },
+      "additionalProperties": true
+    },
+    "context": {
+      "type": "object",
+      "description": "Contextual information about the relationship",
+      "properties": {
+        "description": {
+          "type": "string",
+          "maxLength": 500,
+          "description": "Human-readable description of the relationship"
+        },
+        "category": {
+          "type": "string",
+          "enum": [
+            "operational",
+            "organizational",
+            "technical",
+            "administrative",
+            "safety",
+            "maintenance",
+            "reporting"
+          ],
+          "description": "Category of relationship"
+        },
+        "source": {
+          "type": "string",
+          "enum": [
+            "manual",
+            "automated",
+            "inferred",
+            "imported"
+          ],
+          "description": "How this relationship was created"
+        },
+        "reliability": {
+          "type": "string",
+          "enum": [
+            "verified",
+            "probable",
+            "possible",
+            "uncertain"
+          ],
+          "description": "Reliability of this relationship"
+        }
+      }
+    },
+    "conditions": {
+      "type": "array",
+      "description": "Conditions under which this relationship is valid",
+      "items": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "temporal",
+              "operational",
+              "environmental",
+              "status-dependent",
+              "conditional"
+            ]
+          },
+          "condition": {
+            "type": "string",
+            "maxLength": 200
+          },
+          "value": {
+            "type": "string",
+            "maxLength": 100
+          }
+        }
+      }
+    },
+    "tags": {
+      "type": "array",
+      "description": "Tags for categorizing and filtering relationships",
+      "items": {
+        "type": "string",
+        "maxLength": 50
+      },
+      "uniqueItems": true
+    },
+    "validation": {
+      "type": "object",
+      "description": "Validation information for the relationship",
+      "properties": {
+        "isValid": {
+          "type": "boolean",
+          "description": "Whether this relationship is currently valid"
+        },
+        "lastValidated": {
+          "type": "string",
+          "format": "date-time",
+          "description": "When this relationship was last validated"
+        },
+        "validatedBy": {
+          "type": "string",
+          "pattern": "^PER[0-9]{6}$",
+          "description": "Personnel ID who last validated this relationship"
+        },
+        "validationMethod": {
+          "type": "string",
+          "enum": [
+            "manual_review",
+            "automated_check",
+            "system_verification",
+            "external_audit"
+          ]
+        }
+      }
+    },
+    "metrics": {
+      "type": "object",
+      "description": "Metrics and measurements related to this relationship",
+      "properties": {
+        "accessCount": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Number of times this relationship has been accessed"
+        },
+        "lastAccessed": {
+          "type": "string",
+          "format": "date-time",
+          "description": "When this relationship was last accessed"
+        },
+        "utilizationRate": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100,
+          "description": "How frequently this relationship is used (percentage)"
+        }
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "When this relationship record was created"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "When this relationship record was last updated"
+        },
+        "createdBy": {
+          "type": "string",
+          "pattern": "^PER[0-9]{6}$",
+          "description": "Personnel ID who created this relationship"
+        },
+        "version": {
+          "type": "string",
+          "description": "Schema version"
+        }
+      }
+    }
+  },
+  "additionalProperties": false,
+  "anyOf": [
+    {
+      "description": "Equipment to Location relationships",
+      "properties": {
+        "sourceId": {"pattern": "^EQ[0-9]{6}$"},
+        "targetId": {"pattern": "^LOC[0-9]{6}$"},
+        "type": {"enum": ["LOCATED_AT"]}
+      }
+    },
+    {
+      "description": "Equipment to Event relationships",
+      "properties": {
+        "sourceId": {"pattern": "^EQ[0-9]{6}$"},
+        "targetId": {"pattern": "^EVT[0-9]{6}$"},
+        "type": {"enum": ["EXPERIENCED_OUTAGE", "AFFECTED_BY"]}
+      }
+    },
+    {
+      "description": "Personnel to Event relationships",
+      "properties": {
+        "sourceId": {"pattern": "^PER[0-9]{6}$"},
+        "targetId": {"pattern": "^EVT[0-9]{6}$"},
+        "type": {"enum": ["ASSIGNED_TO", "RESOLVED_BY"]}
+      }
+    },
+    {
+      "description": "Event to Report relationships",
+      "properties": {
+        "sourceId": {"pattern": "^EVT[0-9]{6}$"},
+        "targetId": {"pattern": "^RPT[0-9]{6}$"},
+        "type": {"enum": ["GENERATED_REPORT"]}
+      }
+    },
+    {
+      "description": "Report to Report relationships",
+      "properties": {
+        "sourceId": {"pattern": "^RPT[0-9]{6}$"},
+        "targetId": {"pattern": "^RPT[0-9]{6}$"},
+        "type": {"enum": ["CONTAINS_LESSONS", "REFERENCES", "FOLLOWS_UP_ON"]}
+      }
+    },
+    {
+      "description": "Equipment to Equipment relationships",
+      "properties": {
+        "sourceId": {"pattern": "^EQ[0-9]{6}$"},
+        "targetId": {"pattern": "^EQ[0-9]{6}$"},
+        "type": {"enum": ["DEPENDS_ON", "REPLACED_BY", "CONFIGURED_WITH", "COMMUNICATES_WITH"]}
+      }
+    },
+    {
+      "description": "Personnel to Personnel relationships",
+      "properties": {
+        "sourceId": {"pattern": "^PER[0-9]{6}$"},
+        "targetId": {"pattern": "^PER[0-9]{6}$"},
+        "type": {"enum": ["SUPERVISES"]}
+      }
+    },
+    {
+      "description": "Personnel to Location relationships",
+      "properties": {
+        "sourceId": {"pattern": "^PER[0-9]{6}$"},
+        "targetId": {"pattern": "^LOC[0-9]{6}$"},
+        "type": {"enum": ["WORKS_AT"]}
+      }
+    },
+    {
+      "description": "Personnel to Equipment relationships",
+      "properties": {
+        "sourceId": {"pattern": "^PER[0-9]{6}$"},
+        "targetId": {"pattern": "^EQ[0-9]{6}$"},
+        "type": {"enum": ["MAINTAINS"]}
+      }
+    },
+    {
+      "description": "Personnel to Report relationships",
+      "properties": {
+        "sourceId": {"pattern": "^PER[0-9]{6}$"},
+        "targetId": {"pattern": "^RPT[0-9]{6}$"},
+        "type": {"enum": ["AUTHORED", "REVIEWED", "APPROVED"]}
+      }
+    }
+  ]
+}

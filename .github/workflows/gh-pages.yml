@@ -61,21 +61,20 @@ jobs:
     - name: Install dependencies
       run: npm ci
 
-    - name: Build project
-      run: npm run build
+    - name: Build project for deployment
+      run: npm run build:deploy
+
+    - name: Copy additional assets to docs directory
+      run: |
+        # Copy API documentation from the backup (it's generated during build)
+        # Copy remaining assets
+        cp -r data docs/ || true
+        cp -r assets docs/ || true
+        # Create a .nojekyll file to prevent Jekyll processing
+        touch docs/.nojekyll
 
     - name: Setup Pages
       uses: actions/configure-pages@v5
-
-    - name: Copy files to docs directory
-      run: |
-        mkdir -p docs
-        cp index.html docs/
-        cp -r src docs/
-        cp -r data docs/
-        cp -r assets docs/
-        # Create a .nojekyll file to prevent Jekyll processing
-        touch docs/.nojekyll
 
     - name: Upload artifact
       uses: actions/upload-pages-artifact@v3

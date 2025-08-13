@@ -1,0 +1,20 @@
+# Temporary files
+.DS_Store
+Thumbs.db
+
+# Editor files
+*.swp
+*.swo
+*~
+
+# Generated files that can be regenerated
+# (API docs are auto-generated, but we keep them in git for convenience)
+
+# Screenshot working files
+*.psd
+*.sketch
+*.fig
+
+# Backup files
+*.bak
+*.backup

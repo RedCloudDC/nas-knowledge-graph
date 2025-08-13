@@ -1,0 +1,63 @@
+{
+  "nodes": [
+    {
+      "id": 1,
+      "label": "NAS Device",
+      "type": "hardware",
+      "properties": {
+        "brand": "Synology",
+        "model": "DS920+",
+        "capacity": "4-bay",
+        "cpu": "Intel Celeron J4125",
+        "ram": "4GB DDR4",
+        "network": "2x Gigabit Ethernet"
+      },
+      "position": { "x": 200, "y": 150 }
+    },
+    {
+      "id": 2,
+      "label": "RAID Configuration",
+      "type": "concept",
+      "properties": {
+        "level": "RAID1",
+        "drives": 2,
+        "redundancy": "Mirror",
+        "capacity_efficiency": "50%"
+      },
+      "position": { "x": 400, "y": 100 }
+    },
+    {
+      "id": 3,
+      "label": "Network Storage",
+      "type": "concept",
+      "properties": {
+        "protocol": "SMB",
+        "access": "Network",
+        "performance": "1Gb/s"
+      },
+      "position": { "x": 300, "y": 250 }
+    },
+    {
+      "id": 4,
+      "label": "Backup Strategy",
+      "type": "process",
+      "properties": {
+        "frequency": "daily",
+        "retention": "30 days",
+        "destination": "Cloud"
+      },
+      "position": { "x": 150, "y": 300 }
+    },
+    {
+      "id": 5,
+      "label": "Data Protection",
+      "type": "process",
+      "properties": {
+        "encryption": "AES256",
+        "integrity": "checksums",
+        "versioning": "enabled"
+      },
+      "position": { "x": 500, "y": 200 }
+    }
+  ]
+}

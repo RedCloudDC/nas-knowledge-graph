@@ -1,0 +1,282 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nas-knowledge-graph.example.com/schemas/event",
+  "title": "Event Node Schema",
+  "description": "Schema for event nodes including maintenance events, outages, and operational incidents",
+  "type": "object",
+  "required": ["id", "type", "severity", "startTime", "status"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the event",
+      "pattern": "^EVT[0-9]{6}$"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "maintenance_scheduled",
+        "maintenance_unscheduled",
+        "full_outage",
+        "partial_outage",
+        "system_failure",
+        "power_failure",
+        "communication_failure",
+        "weather_related",
+        "equipment_malfunction",
+        "software_issue",
+        "calibration_required",
+        "inspection",
+        "upgrade",
+        "replacement"
+      ],
+      "description": "Type of event or maintenance activity"
+    },
+    "severity": {
+      "type": "string",
+      "enum": [
+        "critical",
+        "high",
+        "medium",
+        "low",
+        "informational"
+      ],
+      "description": "Severity level of the event"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "open",
+        "in_progress",
+        "resolved",
+        "closed",
+        "cancelled",
+        "scheduled"
+      ],
+      "description": "Current status of the event"
+    },
+    "title": {
+      "type": "string",
+      "description": "Brief title or summary of the event",
+      "minLength": 1,
+      "maxLength": 200
+    },
+    "description": {
+      "type": "string",
+      "description": "Detailed description of the event",
+      "maxLength": 2000
+    },
+    "startTime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Event start timestamp (ISO 8601 format)"
+    },
+    "endTime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Event end timestamp (ISO 8601 format)"
+    },
+    "estimatedEndTime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Estimated completion time for ongoing events"
+    },
+    "impactLevel": {
+      "type": "string",
+      "enum": [
+        "no_impact",
+        "minimal",
+        "moderate",
+        "significant",
+        "severe"
+      ],
+      "description": "Operational impact level"
+    },
+    "affectedEquipment": {
+      "type": "array",
+      "description": "List of equipment IDs affected by this event",
+      "items": {
+        "type": "string",
+        "pattern": "^EQ[0-9]{6}$"
+      },
+      "uniqueItems": true
+    },
+    "affectedLocations": {
+      "type": "array",
+      "description": "List of location IDs affected by this event",
+      "items": {
+        "type": "string",
+        "pattern": "^LOC[0-9]{6}$"
+      },
+      "uniqueItems": true
+    },
+    "assignedPersonnel": {
+      "type": "array",
+      "description": "List of personnel IDs assigned to handle this event",
+      "items": {
+        "type": "string",
+        "pattern": "^PER[0-9]{6}$"
+      },
+      "uniqueItems": true
+    },
+    "rootCause": {
+      "type": "object",
+      "description": "Root cause analysis information",
+      "properties": {
+        "category": {
+          "type": "string",
+          "enum": [
+            "hardware_failure",
+            "software_defect",
+            "human_error",
+            "environmental",
+            "power_related",
+            "network_related",
+            "aging_equipment",
+            "design_flaw",
+            "maintenance_related",
+            "external_interference",
+            "unknown"
+          ]
+        },
+        "details": {
+          "type": "string",
+          "maxLength": 1000,
+          "description": "Detailed root cause explanation"
+        },
+        "contributingFactors": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "maxLength": 200
+          },
+          "description": "Additional contributing factors"
+        }
+      }
+    },
+    "resolution": {
+      "type": "object",
+      "description": "Event resolution information",
+      "properties": {
+        "method": {
+          "type": "string",
+          "enum": [
+            "repair",
+            "replacement",
+            "reconfiguration",
+            "software_update",
+            "calibration",
+            "restart",
+            "workaround",
+            "deferred_maintenance"
+          ]
+        },
+        "details": {
+          "type": "string",
+          "maxLength": 1000,
+          "description": "Detailed resolution description"
+        },
+        "partsUsed": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "partNumber": {
+                "type": "string",
+                "maxLength": 100
+              },
+              "description": {
+                "type": "string",
+                "maxLength": 200
+              },
+              "quantity": {
+                "type": "integer",
+                "minimum": 1
+              }
+            }
+          }
+        },
+        "toolsUsed": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "maxLength": 100
+          }
+        }
+      }
+    },
+    "metrics": {
+      "type": "object",
+      "description": "Event metrics and measurements",
+      "properties": {
+        "responseTime": {
+          "type": "number",
+          "description": "Time to initial response (minutes)",
+          "minimum": 0
+        },
+        "resolutionTime": {
+          "type": "number",
+          "description": "Total time to resolution (minutes)",
+          "minimum": 0
+        },
+        "downtime": {
+          "type": "number",
+          "description": "Total system downtime (minutes)",
+          "minimum": 0
+        },
+        "cost": {
+          "type": "number",
+          "description": "Estimated cost of event (USD)",
+          "minimum": 0
+        }
+      }
+    },
+    "tags": {
+      "type": "array",
+      "description": "Categorization tags for the event",
+      "items": {
+        "type": "string",
+        "maxLength": 50
+      },
+      "uniqueItems": true
+    },
+    "parentEvent": {
+      "type": "string",
+      "description": "Reference to parent event ID (for related events)",
+      "pattern": "^EVT[0-9]{6}$"
+    },
+    "childEvents": {
+      "type": "array",
+      "description": "List of child event IDs spawned from this event",
+      "items": {
+        "type": "string",
+        "pattern": "^EVT[0-9]{6}$"
+      },
+      "uniqueItems": true
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Record creation timestamp"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Record last update timestamp"
+        },
+        "createdBy": {
+          "type": "string",
+          "pattern": "^PER[0-9]{6}$",
+          "description": "Personnel ID who created the event record"
+        },
+        "version": {
+          "type": "string",
+          "description": "Schema version"
+        }
+      }
+    }
+  },
+  "additionalProperties": false
+}

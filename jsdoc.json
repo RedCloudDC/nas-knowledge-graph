@@ -1,0 +1,36 @@
+{
+  "source": {
+    "include": ["./src/"],
+    "includePattern": "\\.(js|jsx)$",
+    "exclude": [
+      "./src/**/*.test.js",
+      "./src/**/*.spec.js",
+      "./node_modules/"
+    ]
+  },
+  "opts": {
+    "destination": "./docs/api/",
+    "recurse": true
+  },
+  "plugins": [
+    "plugins/markdown",
+    "plugins/jsdoc-to-markdown"
+  ],
+  "templates": {
+    "cleverLinks": false,
+    "monospaceLinks": false
+  },
+  "metadata": {
+    "title": "NAS Knowledge Graph API Documentation",
+    "description": "Complete API reference for the NAS Knowledge Graph Demo application"
+  },
+  "docdash": {
+    "static": true,
+    "sort": true,
+    "collapse": true,
+    "wrap": true,
+    "typedefs": true,
+    "navLevel": 2,
+    "private": false
+  }
+}

@@ -19,6 +19,13 @@ Interactive visualization of NAS (Network Attached Storage) knowledge relationsh
 
 Visit the live demo at: [https://USERNAME.github.io/nas-knowledge-graph-demo](https://USERNAME.github.io/nas-knowledge-graph-demo)
 
+### Demo Features
+- **Interactive Graph Visualization**: Explore NAS concepts through an interactive knowledge graph
+- **Advanced Analytics**: Equipment failure analysis, geographic distribution, maintenance timelines
+- **Smart Search**: Global search with advanced filtering capabilities
+- **Path Finding**: Discover relationships between different NAS concepts
+- **Real-time Analysis**: Performance monitoring and trend detection
+
 ## 🛠️ Technology Stack
 
 - **Frontend**: Vanilla JavaScript (ES6+), HTML5, CSS3
@@ -162,7 +169,23 @@ We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for deta
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🙏 Acknowledgments
+## 📚 Documentation
+
+Comprehensive documentation is available in the `docs/` directory:
+
+- **[Complete Documentation Index](docs/README.md)** - Overview of all documentation
+- **[User Guide](docs/user-guide.md)** - Step-by-step tutorial with screenshots
+- **[Technical Documentation](docs/technical.md)** - Architecture and development guide
+- **[API Reference](docs/api/README.md)** - Auto-generated API documentation
+- **[Troubleshooting](docs/troubleshooting.md)** - Common issues and solutions
+
+### Quick Documentation Links
+- 🎆 **New users**: Start with the [User Guide](docs/user-guide.md)
+- 🛠️ **Developers**: Read [Technical Documentation](docs/technical.md)
+- 🐛 **Issues**: Check [Troubleshooting Guide](docs/troubleshooting.md)
+- 📝 **API**: Browse [API Reference](docs/api/README.md)
+
+## 🔙 Acknowledgments
 
 - Inspired by modern knowledge management and visualization techniques
 - Built with love for the NAS and data storage community
@@ -172,7 +195,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 - **Issues**: [GitHub Issues](https://github.com/USERNAME/nas-knowledge-graph-demo/issues)
 - **Discussions**: [GitHub Discussions](https://github.com/USERNAME/nas-knowledge-graph-demo/discussions)
-- **Documentation**: See [CONTRIBUTING.md](CONTRIBUTING.md) for development help
+- **Documentation**: See [docs/README.md](docs/README.md) for comprehensive guides
 
 ---
 

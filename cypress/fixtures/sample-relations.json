@@ -1,0 +1,48 @@
+{
+  "edges": [
+    {
+      "id": "e1",
+      "source": 1,
+      "target": 2,
+      "label": "implements",
+      "type": "uses",
+      "properties": {
+        "strength": "required",
+        "description": "NAS device implements RAID configuration for data redundancy"
+      }
+    },
+    {
+      "id": "e2",
+      "source": 1,
+      "target": 3,
+      "label": "provides",
+      "type": "enables",
+      "properties": {
+        "strength": "primary",
+        "description": "NAS device provides network storage capabilities"
+      }
+    },
+    {
+      "id": "e3",
+      "source": 2,
+      "target": 3,
+      "label": "enhances",
+      "type": "improves",
+      "properties": {
+        "strength": "beneficial",
+        "description": "RAID configuration enhances network storage reliability"
+      }
+    },
+    {
+      "id": "e4",
+      "source": 4,
+      "target": 5,
+      "label": "includes",
+      "type": "contains",
+      "properties": {
+        "strength": "integral",
+        "description": "Backup strategy includes data protection measures"
+      }
+    }
+  ]
+}
