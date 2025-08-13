@@ -19,6 +19,14 @@ Interactive visualization of NAS (Network Attached Storage) knowledge relationsh
 
 Visit the live demo at: [https://USERNAME.github.io/nas-knowledge-graph-demo](https://USERNAME.github.io/nas-knowledge-graph-demo)
 
+### 🎥 Demo Video
+
+Watch a quick demonstration of the key features:
+
+[![NAS Knowledge Graph Demo](https://img.youtube.com/vi/PLACEHOLDER_VIDEO_ID/0.jpg)](https://youtu.be/PLACEHOLDER_VIDEO_ID)
+
+*Note: Demo video shows the interactive graph visualization, search functionality, and analytics features. Click to watch on YouTube.*
+
 ### Demo Features
 - **Interactive Graph Visualization**: Explore NAS concepts through an interactive knowledge graph
 - **Advanced Analytics**: Equipment failure analysis, geographic distribution, maintenance timelines
